@@ -1,0 +1,86 @@
+﻿<div class="card border-secondary">
+    <div class="card-header bg-secondary  text-light text-center">
+        <h3><strong>Employee List (DataTable)</strong></h3>
+        <hr class="border-light"/>
+        <div class="pull-left">
+            <a routerLink="/createEmployeeTemplate" class="btn btn-success btn-sm">Create Employee (T)</a>
+        </div>
+        <div class="pull-right">
+            <a routerLink="/createEmployeeReactive" class="btn btn-success btn-sm">Create Employee (R)</a>
+        </div>
+    </div>
+    
+    <div class="card-body">
+        <div *ngIf="!employees">
+            {{statusMessage}}
+        </div>
+        <div *ngIf="employees">
+            <table id="dataTable" class="table table-bordered table-sm table-hover">
+                <thead>
+                    <tr>
+                        <th>SL</th>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th>Annual Salary</th>
+                        <th>Date of Birth</th>
+                        <th>Comment</th>
+                        <th class="text-center">
+                            <div style="display: inline-block; width: 270px">
+                                Action
+                            </div>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>SL</th>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th>Annual Salary</th>
+                        <th>Date of Birth</th>
+                        <th>Comment</th>
+                        <th class="text-center">
+                            <div style="display: inline-block; width: 270px">
+                                Action
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tfoot>
+
+                    <tr>
+                        <th>SL</th>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th>Annual Salary</th>
+                        <th>Date of Birth</th>
+                        <th>Comment</th>
+                        <th class="text-center">
+                            <div style="display: inline-block; width: 250px">
+                                Action
+                            </div>
+                        </th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <tr *ngFor="let employee of employees; trackBy:trackByEmployeeCode; let i = index">
+                        <td>{{i+1}}</td>
+                        <!--<td>
+                            {{employee.employeeId}}
+                        </td>-->
+                        <td>{{employee.employeeName | employeeTitle:employee.gender}}</td>
+                        <td>{{employee.gender}}</td>
+                        <td>{{employee.annualSalary | currency:'USD':true}}</td>
+                        <td>{{employee.dateOfBirth}}</td>
+                        <td>{{employee.annualSalary > 6000 ? 'Senior Employee': 'Mid Level Employee'}}</td>
+                        <th>
+                            <a [routerLink]="['/employeeDetails/', employee.employeeId]" class="btn btn-info btn-sm">Details</a>
+                            <a [routerLink]="['/updateEmployeeReactive/', employee.employeeId]" class="btn btn-primary btn-sm">Edit (R)</a>
+                            <a [routerLink]="['/updateEmployeeTemplate/', employee.employeeId]" class="btn btn-primary btn-sm">Edit (T)</a>
+                            <a [routerLink]="['/deleteEmployee/',employee.employeeId]" class="btn btn-danger btn-sm">Delete</a>
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

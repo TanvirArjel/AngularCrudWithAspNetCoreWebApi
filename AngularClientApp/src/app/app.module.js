@@ -13,6 +13,7 @@ var http_1 = require("@angular/http");
 var app_component_1 = require("./app.component");
 var employee_component_1 = require("./employee/employee.component");
 var employeeList_component_1 = require("./employee/employeeList.component");
+var employeeDataTable_component_1 = require("./employee/employeeDataTable.component");
 var create_employee_template_component_1 = require("./employee/create-employee-template.component");
 var create_employee_reactive_component_1 = require("./employee/create-employee-reactive.component");
 var update_employee_reactive_component_1 = require("./employee/update-employee-reactive.component");
@@ -27,6 +28,7 @@ var employee_service_1 = require("./employee/employee.service");
 var appRoutes = [
     { path: 'home', component: home_component_1.HomeComponent },
     { path: 'employeeList', component: employeeList_component_1.EmployeeListComponent },
+    { path: 'employeeDataTable', component: employeeDataTable_component_1.EmployeeDataTableComponent },
     { path: 'createEmployeeTemplate', component: create_employee_template_component_1.CreateEmployeeTepmlateComponent },
     { path: 'createEmployeeReactive', component: create_employee_reactive_component_1.CreateEmployeeReactiveComponent },
     { path: 'updateEmployeeReactive/:employeeId', component: update_employee_reactive_component_1.UpdateEmployeeReactiveComponent },
@@ -42,7 +44,7 @@ var AppModule = /** @class */ (function () {
     AppModule = __decorate([
         core_1.NgModule({
             imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, forms_1.ReactiveFormsModule, http_1.HttpModule, router_1.RouterModule.forRoot(appRoutes)],
-            declarations: [app_component_1.AppComponent, employee_component_1.EmployeeComponent, employeeList_component_1.EmployeeListComponent, create_employee_template_component_1.CreateEmployeeTepmlateComponent, create_employee_reactive_component_1.CreateEmployeeReactiveComponent,
+            declarations: [app_component_1.AppComponent, employee_component_1.EmployeeComponent, employeeList_component_1.EmployeeListComponent, employeeDataTable_component_1.EmployeeDataTableComponent, create_employee_template_component_1.CreateEmployeeTepmlateComponent, create_employee_reactive_component_1.CreateEmployeeReactiveComponent,
                 update_employee_reactive_component_1.UpdateEmployeeReactiveComponent, update_employee_template_component_1.UpdateEmployeeTepmlateComponent, delete_employee_component_1.DeleteEmployeeComponent, employeeTitle_pipe_1.EmployeeTitlePipe, employeeCount_component_1.EmployeeCountComponent, home_component_1.HomeComponent, pageNotFound_component_1.PageNotFoundComponent],
             bootstrap: [app_component_1.AppComponent],
             providers: [employee_service_1.EmployeeService]
