@@ -1,0 +1,84 @@
+﻿<div *ngIf="!employeeForm">
+    {{statusMessage}}
+</div>
+<div *ngIf="employeeForm">
+    <div class="card border-primary">
+        <div class="card-header text-light bg-primary text-center">
+            <h3><strong>Update Employee (Reactive Form)</strong></h3>
+        </div>
+        <form [formGroup]="employeeForm" (ngSubmit)="updateEmployee(employeeForm)">
+            <div class="card-body">
+                <div class="form-row">
+                    <input type="hidden" class="form-control" id="employeeId" name="employeeId" formControlName="employeeId" placeholder="Employee Id" required>
+                    <!--<div class="col-md-4 mb-3">
+                        <label for="code">Employee Id</label>
+                        <input type="text" class="form-control" id="code" name="employeeId" formControlName="employeeId" placeholder="Employee Id" required>
+                        <div class="text-danger" *ngIf="employeeForm.controls['code'].touched && employeeForm.controls['code'].hasError('required')">
+                            Employee Code is required
+                        </div>
+                    </div>-->
+                    <div class="col-md-4 mb-3">
+                        <label for="employeeName">Employee Name</label>
+                        <input type="text" class="form-control" id="employeeName" name="employeeName" formControlName="employeeName" placeholder="Employee Name">
+                        <div class="text-danger" *ngIf="employeeForm.controls['employeeName'].touched && employeeForm.controls['employeeName'].hasError('required')">
+                            Please enter Employee Name
+                        </div>
+                        <div class="text-danger" *ngIf="employeeForm.controls['employeeName'].touched && employeeForm.controls['employeeName'].hasError('minlength')">
+                            Employee name should be at least 4 characters
+                        </div>
+                        <div class="text-danger" *ngIf="employeeForm.controls['employeeName'].touched && employeeForm.controls['employeeName'].hasError('maxlength')">
+                            Employee name can not be more than 50 characters
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="gender">Gender</label>
+                        <select class="custom-select" name="gender" id="gender" formControlName="gender" required>
+                            <option [ngValue]="null">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                        <div class="text-danger" *ngIf="employeeForm.controls['gender'].touched && employeeForm.controls['gender'].hasError('required')">
+                            Please select the gender
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="annualSalary">Annual Salary</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroupPrepend">$</span>
+                            </div>
+                            <input type="number" name="annualSalary" formControlName="annualSalary" class="form-control" id="annualSalary" placeholder="Annual Salary" aria-describedby="inputGroupPrepend" required>
+                        </div>
+                        <div class="text-danger" *ngIf="employeeForm.controls['annualSalary'].touched && employeeForm.controls['annualSalary'].hasError('required')">
+                            Please enter the Annual Salary
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="dateOfBirth">Date of Birth</label>
+                        <input type="text" class="form-control" id="dateOfBirth" name="dateOfBirth" formControlName="dateOfBirth" placeholder="Date of Birth" required>
+                        <div class="text-danger" *ngIf="employeeForm.controls['dateOfBirth'].touched && employeeForm.controls['dateOfBirth'].hasError('required')">
+                            Please enter the Date Of Birth
+                        </div>
+                        <div class="text-danger" *ngIf="employeeForm.controls['dateOfBirth'].touched && employeeForm.controls['dateOfBirth'].hasError('pattern')">
+                            Date of Birth should be dd/MM/yyyy(01/01/2011) format!
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="card-footer border-primary text-center">
+                <button [disabled]="!employeeForm.valid" class="btn btn-primary" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</button>
+                <button class="btn btn-warning" (click)="resetCreateEmployeeForm()" type="button"><i class="fa fa-repeat" aria-hidden="true"></i> Reset</button>
+                <a routerLink="/employeeList" class="btn btn-success"><i class="fa fa-arrow-circle-o-left " aria-hidden="true"></i> Back to Employee List</a>
+            </div>
+
+
+        </form>
+    </div>
+
+
+
+</div>
+<!--{{employeeForm.value | json}}-->

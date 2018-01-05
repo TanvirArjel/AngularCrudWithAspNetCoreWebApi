@@ -1,0 +1,60 @@
+﻿<div class="card border-success">
+    <div class="card-header text-center text-light bg-success">
+        <h3><strong>Create Employee (Template Form)</strong></h3>
+    </div>
+    <form #employeeForm="ngForm" (ngSubmit)="createEmployee(employeeForm)" novalidate>
+        <div class="card-body">
+            <div class="form-row">
+                
+                <div class="col-md-4 mb-3">
+                    <label for="employeeName">Employee Name</label>
+                    <input type="text" class="form-control" id="employeeName" name="employeeName" minlength="4" #employeeNameRef="ngModel" [(ngModel)]="employee.employeeName" placeholder="Employee Name" required>
+                    <div class="text-danger" *ngIf="employeeNameRef.invalid && employeeNameRef.touched">
+                        <div [hidden]="!employeeNameRef.errors.required">Please enter the employee name</div>
+                        <div [hidden]="!employeeNameRef.errors.minlength">Employee name should be at least 4 character long!</div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="gender">Gender</label>
+                    <select class="custom-select" name="gender" id="gender" #gender="ngModel" [(ngModel)]="employee.gender" required>
+                        <option [ngValue]="null">Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                    <div class="text-danger" *ngIf="gender.invalid && gender.touched">Please select the gender</div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="annualSalary">Annual Salary</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupPrepend">$</span>
+                        </div>
+                        <input type="number" name="annualSalary" #annualSalary="ngModel" [(ngModel)]="employee.annualSalary" class="form-control" id="annualSalary" placeholder="Annual Salary" aria-describedby="inputGroupPrepend" required>
+                    </div>
+                    <div class="text-danger" *ngIf="annualSalary.invalid && annualSalary.touched">Annual Salary is required</div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="dateOfBirth">Date of Birth</label>
+                    <input type="text" class="form-control" id="dateOfBirth" name="dateOfBirth" #dateOfBirthRef="ngModel" pattern="^(0[1-9]|1[0-9]|2[0-9]|3[01])[/](0[1-9]|1[012])[/][0-9]{4}$" [(ngModel)]="employee.dateOfBirth" placeholder="Date of Birth" required>
+                    <div class="text-danger" *ngIf="dateOfBirthRef.invalid && dateOfBirthRef.touched">
+                        <div [hidden]="!dateOfBirthRef.errors.required">Please Enter Date of Birth</div>
+                        <div [hidden]="!dateOfBirthRef.errors.pattern">Please enter the date of birth as 01/01/2011 format</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <div class="card-footer border-success text-center">
+            <button [disabled]="!employeeForm.valid" class="btn btn-primary" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</button>
+            <button class="btn btn-warning" (click)="resetCreateEmployeeForm(employeeForm)" type="button"><i class="fa fa-repeat" aria-hidden="true"></i> Reset</button>
+            <a routerLink="/employeeList" class="btn btn-success"><i class="fa fa-arrow-circle-o-left " aria-hidden="true"></i> Back to Employee List</a>
+        </div>
+
+
+    </form>
+</div>
+
+
+
+<!--{{employeeForm.value | json}}-->

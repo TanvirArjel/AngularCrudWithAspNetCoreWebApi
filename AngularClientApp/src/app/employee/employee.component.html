@@ -1,0 +1,44 @@
+﻿
+<div *ngIf="!employee">
+    {{statusMessage}}
+</div>
+
+<div *ngIf ="employee" class="card border-info">
+    <div class="card-header text-center text-light bg-info">
+        <h3><strong>Employee Details</strong></h3>
+    </div>
+    <div class="card-body">
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label>Employee Id</label>
+                <div class="form-control">{{employee.employeeId}}</div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label>Employee Code</label>
+                <div class="form-control">{{employee.employeeName | employeeTitle:employee.gender}}</div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label>Gender</label>
+                <div class="form-control">{{employee.gender}}</div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label>Annual Salary</label>
+                <div class="form-control">{{employee.annualSalary | currency:'USD':true}}</div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label>Date of Birth</label>
+                <div class="form-control">{{employee.dateOfBirth }}</div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label>Comment</label>
+                <div class="form-control">{{employee.annualSalary > 6000 ? 'Senior Employee': 'Mid Level Employee'}}</div>
+            </div>
+
+        </div>
+    </div>
+    <div class="card-footer border-info text-center">
+        <a class="btn btn-success" [routerLink]="['/updateEmployeeReactive/',employee.employeeId]">Edit</a>
+        <a class="btn btn-primary" routerLink="/employeeList">Back to Employee List</a>
+    </div>
+</div>
+<!--<input type="button" class="btn btn-primary" (click) ="onBackButtonClick()" value="Back to Employee List"/>-->
